@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Работы — Вторая жизнь</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:"Nunito Sans",sans-serif;margin:0;background:#f6efe6;color:#2a1c12}
+.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+header{background:rgba(246,239,230,.9);border-bottom:1px solid #e7d8c6}
+.bar{display:flex;align-items:center;height:70px}
+.logo{font-family:Fraunces,serif;font-size:24px;text-decoration:none;color:inherit}
+nav{margin-left:auto;display:flex;gap:16px;font-weight:700;font-size:14px}
+nav a{color:inherit;text-decoration:none} nav a.on{color:#7a4b2a}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px 0 60px}
+.card{background:#fff;border-radius:18px;overflow:hidden}
+.card img{width:100%;height:240px;object-fit:cover}
+.card div{padding:14px} h1{font-family:Fraunces,serif}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="index.html">Вторая жизнь</a>
+  <nav><a href="index.html">Мастерская</a><a class="on" href="works.html">Работы</a><a href="order.html">Оценка по фото</a></nav>
+</div></header>
+<main class="wrap">
+  <h1 style="margin:28px 0 8px">Галерея</h1>
+  <p style="color:#7a6a5a;margin-bottom:8px">Несколько восстановленных предметов — демо-витрина.</p>
+  <div class="grid">
+    <article class="card"><img src="img/mebel_after.jpg" alt="Кресло"><div><b>Кресло 1960-х</b><p>Бархат, орех, новый наполнитель.</p></div></article>
+    <article class="card"><img src="img/mebel_work2.jpg" alt="Комод"><div><b>Комод</b><p>Шпон дуба, латунь, масло.</p></div></article>
+    <article class="card"><img src="img/mebel_work3.jpg" alt="Стол"><div><b>Обеденная группа</b><p>Стол и стулья, восстановленный каркас.</p></div></article>
+    <article class="card"><img src="img/mebel_work4.jpg" alt="Диван"><div><b>Честерфилд</b><p>Кожа, капитоне, латунные гвозди.</p></div></article>
+    <article class="card"><img src="img/mebel_hero.jpg" alt="Мастерская"><div><b>Цех</b><p>Где собираем и фотографируем.</p></div></article>
+    <article class="card"><img src="img/mebel_before.jpg" alt="До"><div><b>Как привозят</b><p>Оценка всегда по фото и осмотру.</p></div></article>
+  </div>
+</main>
+</body>
+</html>

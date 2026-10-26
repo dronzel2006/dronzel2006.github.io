@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>НЕБО — салюты и пиротехника</title>
+<meta name="description" content="Магазин пиротехники: батареи, ракеты, фонтаны. Доставка и самовывоз. 18+.">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="logo" href="index.html">НЕ<span>БО</span></a>
+  <nav>
+    <a class="on" href="index.html">Главная</a>
+    <a href="catalog.html">Каталог</a>
+    <a href="delivery.html">Доставка</a>
+    <a class="cart-link" href="cart.html">Корзина <b data-cart-count>0</b></a>
+  </nav>
+</div></header>
+
+<section class="hero">
+  <img src="img/pyro_hero.jpg" alt="Салют над набережной">
+  <div class="wrap hero-in">
+    <div class="kicker">Пиротехника 18+</div>
+    <h1>Небо, которое можно заказать</h1>
+    <p>Батареи, ракеты, фонтаны и тихие свадебные салюты. Доставка по городу и самовывоз со склада.</p>
+    <div class="row-btns">
+      <a class="btn btn-gold" href="catalog.html">Смотреть каталог</a>
+      <a class="btn btn-ghost" href="delivery.html">Условия доставки</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cats">
+    <a class="cat" href="catalog.html?cat=batteries"><b>Батареи</b><span>От двора до шоу</span></a>
+    <a class="cat" href="catalog.html?cat=rockets"><b>Ракеты</b><span>Высокий разрыв</span></a>
+    <a class="cat" href="catalog.html?cat=fountains"><b>Фонтаны</b><span>Наземные эффекты</span></a>
+    <a class="cat" href="catalog.html?cat=party"><b>Для зала</b><span>Без огня, с конфетти</span></a>
+  </div>
+  <section class="sec">
+    <h2>Хиты сезона</h2>
+    <p class="sub">То, что чаще всего забирают под Новый год и свадьбы.</p>
+    <div class="grid" id="hits"></div>
+  </section>
+</div>
+<footer class="site"><div class="wrap">
+  <span>НЕБО — демо-проект магазина пиротехники. 18+</span>
+  <span>Портфолио · Андрей Добридник</span>
+</div></footer>
+<script src="data.js"></script>
+<script>
+const hits = ["dragon","aurora","waltz","spark"];
+document.getElementById("hits").innerHTML = hits.map(id => {
+  const p = PRODUCTS.find(x => x.id===id);
+  return `<a class="card" href="product.html?id=${p.id}">
+    <div class="pic"><img src="${p.img}" alt="${p.name}"></div>
+    <div class="body"><span class="chip">${p.shots} залпов</span><h3>${p.name}</h3>
+    <div class="meta">${p.short}</div>
+    <div class="row"><span class="price">${rub(p.price)}</span><span class="meta">карточка →</span></div></div></a>`;
+}).join("");
+</script>
+</body>
+</html>

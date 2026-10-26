@@ -3,171 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Гараж 52 — автосервис с онлайн-записью | Демо-проект</title>
-<meta name="description" content="Автосервис: прозрачный прайс, онлайн-запись на удобное время, гарантия на работы.">
+<title>Гараж 52 — автосервис</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --y:#ffc21a; --ink:#111418; --panel:#1b2027; --line:#2a313b; --muted:#9aa4b2; --ok:#2ecc71; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:"Segoe UI", Roboto, Arial, sans-serif; background:var(--ink); color:#eef1f5; line-height:1.5; }
-  button { font-family:inherit; cursor:pointer; }
-  a { color:inherit; text-decoration:none; }
-  .wrap { max-width:1140px; margin:0 auto; padding:0 20px; }
-  header { border-bottom:1px solid var(--line); }
-  .nav { height:70px; display:flex; align-items:center; justify-content:space-between; }
-  .logo { font-weight:900; font-size:24px; letter-spacing:1px; }
-  .logo span { background:var(--y); color:var(--ink); padding:0 8px; border-radius:6px; margin-left:4px; }
-  .nav nav { display:flex; gap:26px; color:var(--muted); }
-  .btn { background:var(--y); color:var(--ink); border:0; padding:14px 26px; border-radius:12px; font-weight:800; font-size:16px; display:inline-block; transition:.2s; }
-  .btn:hover { filter:brightness(1.08); transform:translateY(-1px); }
-  .hero { padding:80px 0; display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; }
-  .hero h1 { font-size:52px; line-height:1.05; margin-bottom:18px; }
-  .hero h1 em { font-style:normal; color:var(--y); }
-  .hero p { color:var(--muted); font-size:19px; margin-bottom:28px; }
-  .stats { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .stat { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:22px; }
-  .stat b { font-size:34px; color:var(--y); display:block; }
-  .stat span { color:var(--muted); font-size:14px; }
-  section { padding:70px 0; }
-  h2 { font-size:36px; margin-bottom:10px; }
-  .lead { color:var(--muted); font-size:18px; margin-bottom:30px; }
-  .tabs { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
-  .tabs button { background:var(--panel); border:1px solid var(--line); color:var(--muted); padding:10px 18px; border-radius:10px; font-weight:600; }
-  .tabs button.on { background:var(--y); color:var(--ink); border-color:var(--y); }
-  table { width:100%; border-collapse:collapse; background:var(--panel); border-radius:18px; overflow:hidden; }
-  td { padding:16px 20px; border-bottom:1px solid var(--line); }
-  td:last-child { text-align:right; font-weight:700; white-space:nowrap; }
-  td small { color:var(--muted); display:block; }
-  tr:last-child td { border-bottom:0; }
-  .book { display:grid; grid-template-columns:1.3fr .7fr; gap:24px; }
-  .box { background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:26px; }
-  .box h3 { font-size:18px; margin-bottom:14px; }
-  .box h3 i { font-style:normal; display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--y); color:var(--ink); font-size:14px; margin-right:8px; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-  .chip { border:1px solid var(--line); background:transparent; color:#eef1f5; padding:10px 14px; border-radius:10px; font-size:14px; }
-  .chip.on { border-color:var(--y); background:rgba(255,194,26,.12); color:var(--y); }
-  .chip:disabled { opacity:.3; text-decoration:line-through; cursor:not-allowed; }
-  .days { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:24px; }
-  .day { border:1px solid var(--line); background:transparent; color:#eef1f5; border-radius:12px; padding:10px 0; text-align:center; }
-  .day small { display:block; color:var(--muted); font-size:12px; }
-  .day b { font-size:18px; }
-  .day.on { border-color:var(--y); background:var(--y); color:var(--ink); } .day.on small { color:var(--ink); }
-  .summary ul { list-style:none; margin-bottom:16px; min-height:40px; }
-  .summary li { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px dashed var(--line); font-size:15px; }
-  .summary .t { display:flex; justify-content:space-between; font-size:22px; font-weight:800; margin:14px 0; }
-  .summary .when { color:var(--y); font-weight:600; margin-bottom:14px; min-height:24px; }
-  .summary input { width:100%; padding:13px; border-radius:10px; border:1px solid var(--line); background:var(--ink); color:#fff; font-size:15px; margin-bottom:10px; }
-  .summary .btn { width:100%; }
-  .summary .btn:disabled { opacity:.35; cursor:not-allowed; transform:none; }
-  .done { display:none; text-align:center; padding:20px 0; }
-  .done div { font-size:54px; }
-  .adv { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-  .adv div { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:22px; font-size:30px; }
-  .adv b { display:block; font-size:18px; margin:8px 0 4px; }
-  .adv span { color:var(--muted); font-size:14px; }
-  footer { border-top:1px solid var(--line); padding:26px 0; color:var(--muted); font-size:14px; }
-  footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-  @media (max-width:900px) { .hero, .book { grid-template-columns:1fr; } .adv { grid-template-columns:1fr 1fr; } .nav nav { display:none; } .hero h1 { font-size:38px; } .days { grid-template-columns:repeat(4,1fr); } }
+:root { --y:#ffc21a; --bg:#0d0f12; --card:#16191f; --line:#262b34; --muted:#9aa3b2; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:Inter,sans-serif; background:var(--bg); color:#eef0f4; }
+a { color:inherit; text-decoration:none; }
+.wrap { width:min(1120px, calc(100% - 32px)); margin:0 auto; }
+header { position:sticky; top:0; background:rgba(13,15,18,.9); border-bottom:1px solid var(--line); z-index:10; }
+.bar { display:flex; align-items:center; height:70px; }
+.logo { font-family:Oswald,sans-serif; font-size:26px; letter-spacing:.06em; }
+.logo span { color:var(--y); }
+nav { margin-left:auto; display:flex; gap:16px; font-weight:650; font-size:14px; }
+nav a.on { color:var(--y); }
+.hero { position:relative; min-height:560px; display:grid; align-items:end; }
+.hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent,rgba(13,15,18,.92)); }
+.hero-in { position:relative; z-index:1; padding:0 0 56px; }
+h1 { font-family:Oswald,sans-serif; font-size:clamp(40px,7vw,68px); line-height:1; margin:8px 0 12px; }
+.btn { display:inline-block; background:var(--y); color:#111; font-weight:800; padding:12px 18px; border-radius:10px; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:36px 0 60px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; }
+.muted { color:var(--muted); }
+footer { border-top:1px solid var(--line); padding:22px 0; color:var(--muted); font-size:13px; }
+@media(max-width:800px){ .grid{grid-template-columns:1fr} nav{display:none} }
 </style>
 </head>
 <body>
-<header><div class="wrap nav"><div class="logo">ГАРАЖ<span>52</span></div>
-  <nav><a href="#price">Цены</a><a href="#book">Запись</a><a href="#adv">Почему мы</a></nav>
-  <a class="btn" href="#book">Записаться</a></div></header>
-
-<div class="wrap hero">
-  <div><h1>Ремонт без сюрпризов <em>в чеке</em></h1>
-    <p>Фиксируем цену до начала работ, показываем старые запчасти и отправляем фото-отчёт. Запишитесь онлайн за 30 секунд.</p>
-    <a class="btn" href="#book">Выбрать время</a></div>
-  <div class="stats">
-    <div class="stat"><b>15 мин</b><span>на приёмку авто</span></div>
-    <div class="stat"><b>1 год</b><span>гарантии на работы</span></div>
-    <div class="stat"><b>6 постов</b><span>без очередей</span></div>
-    <div class="stat"><b>4.9 ★</b><span>средняя оценка</span></div>
+<header><div class="wrap bar">
+  <a class="logo" href="index.html">ГАРАЖ <span>52</span></a>
+  <nav>
+    <a class="on" href="index.html">Сервис</a>
+    <a href="prices.html">Прайс</a>
+    <a href="book.html">Запись</a>
+  </nav>
+</div></header>
+<section class="hero">
+  <img src="img/auto_hero.jpg" alt="Подъёмник">
+  <div class="wrap hero-in">
+    <p style="color:var(--y);font-weight:800;letter-spacing:.16em;font-size:12px">ТЕХОБСЛУЖИВАНИЕ</p>
+    <h1>Честный сервис<br>без сюрпризов в чеке</h1>
+    <p class="muted" style="max-width:520px;margin-bottom:18px">Диагностика, масло, тормоза, подвеска. Запись в свободное окно — на сайте.</p>
+    <a class="btn" href="book.html">Записаться</a>
+  </div>
+</section>
+<div class="wrap">
+  <div class="grid">
+    <div class="card"><b>Диагностика 45 мин</b><p class="muted">Компьютер + осмотр на подъёмнике, отчёт в PDF.</p></div>
+    <div class="card"><b>Оригинал и аналоги</b><p class="muted">Согласуем запчасти до того, как ставить.</p></div>
+    <div class="card"><b>Гарантия 12 месяцев</b><p class="muted">На работы и установленные детали.</p></div>
   </div>
 </div>
-
-<section id="price"><div class="wrap">
-  <h2>Прайс-лист</h2><p class="lead">Цены на работы для легковых авто. Запчасти — по ценам поставщика.</p>
-  <div class="tabs" id="ptabs"></div>
-  <table id="ptable"></table>
-</div></section>
-
-<section id="book"><div class="wrap">
-  <h2>Онлайн-запись</h2><p class="lead">Выберите услуги, день и время — мы подтвердим запись по SMS.</p>
-  <div class="book">
-    <div class="box">
-      <h3><i>1</i>Услуги</h3><div class="chips" id="services"></div>
-      <h3><i>2</i>День</h3><div class="days" id="days"></div>
-      <h3><i>3</i>Время</h3><div class="chips" id="slots"></div>
-    </div>
-    <div class="box summary">
-      <div id="sumBox">
-        <h3>Ваша запись</h3>
-        <ul id="sumList"><li style="color:var(--muted)">Выберите услуги</li></ul>
-        <div class="when" id="when"></div>
-        <div class="t"><span>Итого</span><span id="sumTotal">0 ₽</span></div>
-        <input id="car" placeholder="Марка и модель авто"><input id="phone" type="tel" placeholder="Телефон">
-        <button class="btn" id="confirm" disabled>Записаться</button>
-      </div>
-      <div class="done" id="done"><div>✅</div><h3>Вы записаны!</h3><p id="doneText" style="color:var(--muted);margin-top:8px"></p></div>
-    </div>
-  </div>
-</div></section>
-
-<section id="adv"><div class="wrap"><h2>Почему нам доверяют</h2><p class="lead">Сервис, в который не страшно отдать машину.</p>
-  <div class="adv"><div>📸<b>Фото-отчёт</b><span>Присылаем фото и видео каждого этапа</span></div><div>🧾<b>Фиксированная цена</b><span>Без доплат после ремонта</span></div><div>☕<b>Зона ожидания</b><span>Кофе, Wi-Fi и окно в бокс</span></div><div>🔩<b>Старые запчасти</b><span>Всегда возвращаем владельцу</span></div></div>
-</div></section>
-
-<footer><div class="wrap"><span>© Гараж 52 — демо-проект для портфолио</span><span>Дизайн и разработка: Андрей Добридник</span></div></footer>
-
-<script>
-const price = {
-  'ТО и масло': [['Замена масла в двигателе', 'с фильтром', 900], ['ТО-1', 'масло, фильтры, проверка 30 пунктов', 2900], ['Замена воздушного фильтра', '', 300], ['Замена салонного фильтра', '', 400]],
-  'Тормоза': [['Замена передних колодок', 'ось', 1200], ['Замена тормозных дисков', 'ось', 2200], ['Прокачка тормозной системы', '', 1500]],
-  'Подвеска': [['Диагностика подвески', 'на подъёмнике', 0], ['Замена амортизатора', '1 шт.', 1800], ['Замена рычага', '1 шт.', 1600], ['Развал-схождение', '3D-стенд', 2000]],
-  'Шиномонтаж': [['Сезонная замена колёс', 'R13–R17, 4 шт.', 1600], ['Балансировка', '1 колесо', 250], ['Ремонт прокола', '', 500]],
-  'Диагностика': [['Компьютерная диагностика', 'все блоки', 1200], ['Диагностика перед покупкой', '', 2500]],
-};
-const $ = s => document.querySelector(s);
-const rub = n => n ? n.toLocaleString('ru-RU') + ' ₽' : 'бесплатно';
-let tab = Object.keys(price)[0], chosen = new Set(), day = null, slot = null;
-const all = Object.values(price).flat();
-
-function renderPrice() {
-  $('#ptabs').innerHTML = Object.keys(price).map(k => `<button class="${k === tab ? 'on' : ''}">${k}</button>`).join('');
-  $('#ptable').innerHTML = price[tab].map(r => `<tr><td>${r[0]}${r[1] ? `<small>${r[1]}</small>` : ''}</td><td>${r[2] ? 'от ' + rub(r[2]) : 'бесплатно'}</td></tr>`).join('');
-}
-$('#ptabs').onclick = e => { if (e.target.tagName === 'BUTTON') { tab = e.target.textContent; renderPrice(); } };
-
-const popular = ['Замена масла в двигателе', 'ТО-1', 'Замена передних колодок', 'Сезонная замена колёс', 'Развал-схождение', 'Компьютерная диагностика', 'Диагностика подвески'];
-$('#services').innerHTML = popular.map(n => `<button class="chip" data-n="${n}">${n}</button>`).join('');
-$('#services').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; chosen.has(b.dataset.n) ? chosen.delete(b.dataset.n) : chosen.add(b.dataset.n); b.classList.toggle('on'); update(); };
-
-const wd = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
-const days = [...Array(7)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() + i + 1); return d; });
-$('#days').innerHTML = days.map((d, i) => `<button class="day" data-i="${i}"><small>${wd[d.getDay()]}</small><b>${d.getDate()}</b></button>`).join('');
-$('#days').onclick = e => { const b = e.target.closest('.day'); if (!b) return; day = days[b.dataset.i]; slot = null; document.querySelectorAll('.day').forEach(x => x.classList.toggle('on', x === b)); renderSlots(+b.dataset.i); update(); };
-
-function renderSlots(seed) {
-  const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
-  $('#slots').innerHTML = times.map((t, i) => `<button class="chip" ${(i * 7 + seed * 3) % 5 === 0 ? 'disabled' : ''}>${t}</button>`).join('');
-}
-$('#slots').innerHTML = '<span style="color:var(--muted)">Сначала выберите день</span>';
-$('#slots').onclick = e => { const b = e.target.closest('.chip'); if (!b || b.disabled) return; slot = b.textContent; document.querySelectorAll('#slots .chip').forEach(x => x.classList.toggle('on', x === b)); update(); };
-
-function update() {
-  const items = [...chosen].map(n => all.find(r => r[0] === n));
-  $('#sumList').innerHTML = items.length ? items.map(r => `<li><span>${r[0]}</span><span>${rub(r[2])}</span></li>`).join('') : '<li style="color:var(--muted)">Выберите услуги</li>';
-  $('#sumTotal').textContent = rub(items.reduce((s, r) => s + r[2], 0)) .replace('бесплатно', '0 ₽');
-  $('#when').textContent = day ? `${day.toLocaleDateString('ru-RU', {weekday:'long', day:'numeric', month:'long'})}${slot ? ', ' + slot : ''}` : '';
-  $('#confirm').disabled = !(items.length && day && slot);
-}
-$('#confirm').onclick = () => {
-  if (!$('#phone').value.trim()) { $('#phone').focus(); return; }
-  $('#sumBox').style.display = 'none'; $('#done').style.display = 'block';
-  $('#doneText').textContent = `Ждём вас ${$('#when').textContent}. Подтверждение придёт по SMS.`;
-};
-renderPrice();
-</script>
+<footer><div class="wrap">Гараж 52 — демо-сайт автосервиса · Андрей Добридник</div></footer>
 </body>
 </html>

@@ -3,186 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Мастерская «Вторая жизнь» — перетяжка и реставрация мебели | Демо-проект</title>
-<meta name="description" content="Перетяжка диванов и кресел, реставрация деревянной мебели. Бесплатная оценка по фото.">
+<title>Вторая жизнь — реставрация мебели</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --brown:#7a4b2a; --cream:#faf5ee; --ink:#2b2118; --muted:#7c6a5a; --accent:#c8742f; --teal:#2f7f7a; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family: Georgia, "Times New Roman", serif; color:var(--ink); background:var(--cream); line-height:1.6; }
-  .sans { font-family:"Segoe UI", Roboto, Arial, sans-serif; }
-  a { color:inherit; text-decoration:none; }
-  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
-  header { padding:22px 0; }
-  .nav { display:flex; justify-content:space-between; align-items:center; }
-  .logo { font-size:24px; font-weight:700; letter-spacing:.5px; }
-  .logo span { color:var(--accent); }
-  .nav nav { display:flex; gap:26px; font-family:"Segoe UI", Arial, sans-serif; color:var(--muted); }
-  .btn { font-family:"Segoe UI", Arial, sans-serif; display:inline-block; background:var(--accent); color:#fff; padding:14px 28px; border-radius:40px; font-weight:600; border:0; cursor:pointer; font-size:16px; transition:.2s; }
-  .btn:hover { background:var(--brown); }
-  .hero { padding:50px 0 70px; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
-  .hero h1 { font-size:52px; line-height:1.08; margin-bottom:20px; }
-  .hero h1 em { color:var(--accent); }
-  .hero p { font-family:"Segoe UI", Arial, sans-serif; font-size:19px; color:var(--muted); margin-bottom:30px; }
-  .ba { position:relative; aspect-ratio:1/1; border-radius:24px; overflow:hidden; box-shadow:0 30px 60px rgba(122,75,42,.2); user-select:none; background:#efe4d4; }
-  .ba svg { position:absolute; inset:0; width:100%; height:100%; }
-  .ba .after { clip-path:inset(0 0 0 50%); }
-  .ba .line { position:absolute; top:0; bottom:0; left:50%; width:3px; background:#fff; transform:translateX(-50%); pointer-events:none; }
-  .ba .line::after { content:"⇆"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:44px; height:44px; border-radius:50%; background:#fff; display:grid; place-items:center; color:var(--brown); font-size:20px; box-shadow:0 4px 14px rgba(0,0,0,.2); }
-  .ba input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; }
-  .ba .lbl { position:absolute; top:16px; font-family:"Segoe UI", Arial, sans-serif; font-size:13px; font-weight:700; background:rgba(0,0,0,.55); color:#fff; padding:4px 12px; border-radius:20px; }
-  section { padding:70px 0; }
-  h2 { font-size:38px; margin-bottom:10px; }
-  .lead { font-family:"Segoe UI", Arial, sans-serif; color:var(--muted); font-size:18px; margin-bottom:36px; }
-  .services { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-  .srv { background:#fff; border-radius:20px; padding:26px; }
-  .srv .ico { font-size:34px; margin-bottom:10px; }
-  .srv h3 { font-size:21px; margin-bottom:6px; }
-  .srv p { font-family:"Segoe UI", Arial, sans-serif; font-size:15px; color:var(--muted); margin-bottom:12px; }
-  .srv b { font-family:"Segoe UI", Arial, sans-serif; color:var(--brown); }
-  .tabs { display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap; }
-  .tabs button { font-family:"Segoe UI", Arial, sans-serif; border:2px solid #e2d3bf; background:transparent; padding:9px 20px; border-radius:30px; cursor:pointer; font-weight:600; color:var(--muted); }
-  .tabs button.on { background:var(--brown); border-color:var(--brown); color:#fff; }
-  .works { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-  .work { background:#fff; border-radius:20px; overflow:hidden; transition:.25s; }
-  .work .pic { height:200px; display:grid; place-items:center; font-size:72px; }
-  .work .txt { padding:20px; font-family:"Segoe UI", Arial, sans-serif; }
-  .work h4 { font-size:18px; margin-bottom:4px; font-family:Georgia, serif; }
-  .work p { color:var(--muted); font-size:14px; }
-  .work.hide { display:none; }
-  .why { background:var(--brown); color:#fff; border-radius:30px; padding:56px; display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
-  .why b { font-size:44px; display:block; color:#f3c99a; }
-  .why p { font-family:"Segoe UI", Arial, sans-serif; opacity:.85; }
-  .order { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
-  .order ol { font-family:"Segoe UI", Arial, sans-serif; color:var(--muted); padding-left:20px; font-size:17px; }
-  .order li { margin-bottom:12px; }
-  form { background:#fff; padding:32px; border-radius:24px; font-family:"Segoe UI", Arial, sans-serif; }
-  form input, form textarea, form select { width:100%; padding:14px; border:1px solid #e2d3bf; border-radius:12px; font-size:16px; margin-bottom:12px; font-family:inherit; background:#fffdfa; }
-  .drop { border:2px dashed #e2d3bf; border-radius:12px; padding:20px; text-align:center; color:var(--muted); cursor:pointer; margin-bottom:12px; }
-  .previews { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
-  .previews img { width:64px; height:64px; object-fit:cover; border-radius:8px; }
-  form .btn { width:100%; }
-  .done { display:none; text-align:center; padding:30px 0; }
-  .reviews { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-  .rev { background:#fff; border-radius:20px; padding:26px; }
-  .rev p { font-style:italic; margin-bottom:14px; }
-  .rev span { font-family:"Segoe UI", Arial, sans-serif; color:var(--muted); font-size:14px; }
-  footer { padding:30px 0; font-family:"Segoe UI", Arial, sans-serif; color:var(--muted); font-size:14px; border-top:1px solid #eadcc8; }
-  footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-  @media (max-width:900px) {
-    .hero, .order { grid-template-columns:1fr; }
-    .services { grid-template-columns:1fr 1fr; }
-    .works, .reviews, .why { grid-template-columns:1fr; }
-    .nav nav { display:none; }
-    .hero h1 { font-size:38px; }
-    .why { padding:32px; }
-  }
+:root { --wood:#7a4b2a; --bg:#f6efe6; --ink:#2a1c12; --muted:#7a6a5a; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"Nunito Sans",sans-serif; background:var(--bg); color:var(--ink); }
+a { color:inherit; text-decoration:none; }
+.wrap { width:min(1120px, calc(100% - 32px)); margin:0 auto; }
+header { background:rgba(246,239,230,.9); position:sticky; top:0; z-index:10; border-bottom:1px solid #e7d8c6; }
+.bar { display:flex; align-items:center; height:70px; }
+.logo { font-family:Fraunces,serif; font-size:24px; }
+nav { margin-left:auto; display:flex; gap:16px; font-weight:700; font-size:14px; }
+nav a.on { color:var(--wood); }
+.hero { position:relative; margin:24px 0; border-radius:28px; overflow:hidden; min-height:460px; }
+.hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero-in { position:relative; z-index:1; padding:48px; max-width:520px; background:linear-gradient(90deg,rgba(246,239,230,.94),rgba(246,239,230,.2)); min-height:460px; display:flex; flex-direction:column; justify-content:center; }
+h1 { font-family:Fraunces,serif; font-size:clamp(36px,5vw,54px); line-height:1.05; margin:8px 0 12px; }
+.btn { display:inline-block; background:var(--wood); color:#fff; padding:12px 18px; border-radius:999px; font-weight:700; }
+.pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:10px 0 50px; }
+.pair figure { background:#fff; border-radius:20px; overflow:hidden; }
+.pair img { width:100%; height:320px; object-fit:cover; }
+.pair figcaption { padding:12px 16px; font-weight:700; }
+.muted { color:var(--muted); }
+footer { padding:22px 0; color:var(--muted); font-size:13px; }
+@media(max-width:800px){ .pair{grid-template-columns:1fr} nav{display:none} }
 </style>
 </head>
 <body>
-<header><div class="wrap nav"><a class="logo" href="#">Вторая <span>жизнь</span></a>
-  <nav><a href="#services">Услуги</a><a href="#works">Работы</a><a href="#order">Оценка</a><a href="#reviews">Отзывы</a></nav>
-  <a class="btn" href="#order">Оценить по фото</a></div></header>
-
-<div class="wrap hero">
-  <div>
-    <h1>Вернём любимому дивану <em>вторую жизнь</em></h1>
-    <p>Перетяжка, реставрация и ремонт мебели. Пришлите фото — назовём цену за 15 минут. Сами заберём и привезём обратно.</p>
-    <a class="btn" href="#order">Узнать стоимость</a>
-  </div>
-  <div class="ba" id="ba">
-    <svg viewBox="0 0 400 400" aria-label="Кресло до ремонта">
-      <rect width="400" height="400" fill="#e8dccb"/>
-      <rect x="0" y="300" width="400" height="100" fill="#d6c5ad"/>
-      <g fill="#8d6e55"><rect x="90" y="120" width="220" height="150" rx="30"/><rect x="60" y="190" width="60" height="110" rx="22"/><rect x="280" y="190" width="60" height="110" rx="22"/><rect x="100" y="230" width="200" height="60" rx="16"/></g>
-      <g fill="#6d5340"><path d="M140 150l30 40-25 10z"/><path d="M240 160l25 30-30 5z"/><circle cx="200" cy="255" r="12"/></g>
-      <g stroke="#5a4230" stroke-width="3"><line x1="100" y1="300" x2="90" y2="330"/><line x1="300" y1="300" x2="312" y2="330"/></g>
-    </svg>
-    <svg class="after" viewBox="0 0 400 400" aria-label="Кресло после ремонта">
-      <rect width="400" height="400" fill="#f1ece4"/>
-      <rect x="0" y="300" width="400" height="100" fill="#e2d6c4"/>
-      <g fill="var(--teal)"><rect x="90" y="120" width="220" height="150" rx="30"/><rect x="60" y="190" width="60" height="110" rx="22"/><rect x="280" y="190" width="60" height="110" rx="22"/><rect x="100" y="230" width="200" height="60" rx="16"/></g>
-      <g fill="#3a9690"><rect x="105" y="135" width="190" height="90" rx="22"/></g>
-      <g fill="#f3c99a"><circle cx="150" cy="180" r="5"/><circle cx="200" cy="180" r="5"/><circle cx="250" cy="180" r="5"/></g>
-      <g stroke="#b88a5a" stroke-width="5" stroke-linecap="round"><line x1="100" y1="300" x2="92" y2="335"/><line x1="300" y1="300" x2="310" y2="335"/></g>
-    </svg>
-    <span class="lbl" style="left:16px">До</span><span class="lbl" style="right:16px">После</span>
-    <div class="line" id="line"></div>
-    <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Сравнить до и после">
-  </div>
-</div>
-
-<section id="services"><div class="wrap">
-  <h2>Что мы делаем</h2><p class="lead">Работаем с мебелью любого возраста — от советских кресел до современных диванов.</p>
-  <div class="services">
-    <div class="srv"><div class="ico">🛋️</div><h3>Перетяжка</h3><p>Новая ткань или экокожа, замена поролона.</p><b>от 6 500 ₽</b></div>
-    <div class="srv"><div class="ico">🪑</div><h3>Реставрация</h3><p>Шлифовка, тонировка, лак по дереву.</p><b>от 4 000 ₽</b></div>
-    <div class="srv"><div class="ico">🔧</div><h3>Ремонт</h3><p>Каркас, механизмы трансформации, пружины.</p><b>от 2 500 ₽</b></div>
-    <div class="srv"><div class="ico">🎨</div><h3>Покраска</h3><p>Кухни, комоды, двери — в любой цвет.</p><b>от 3 500 ₽</b></div>
-  </div>
-</div></section>
-
-<section id="works"><div class="wrap">
-  <h2>Наши работы</h2><p class="lead">Выберите категорию, чтобы посмотреть примеры.</p>
-  <div class="tabs" id="tabs"><button class="on" data-f="all">Все</button><button data-f="peretyazhka">Перетяжка</button><button data-f="restavraciya">Реставрация</button><button data-f="pokraska">Покраска</button></div>
-  <div class="works">
-    <div class="work" data-c="peretyazhka"><div class="pic" style="background:#dbe9e7">🛋️</div><div class="txt"><h4>Угловой диван</h4><p>Велюр, замена поролона · 4 дня</p></div></div>
-    <div class="work" data-c="restavraciya"><div class="pic" style="background:#efe1cc">🪑</div><div class="txt"><h4>Венские стулья</h4><p>Шлифовка, тонировка орех · 6 дней</p></div></div>
-    <div class="work" data-c="pokraska"><div class="pic" style="background:#e3e7f1">🗄️</div><div class="txt"><h4>Комод 70-х</h4><p>Покраска в графит, новые ручки · 3 дня</p></div></div>
-    <div class="work" data-c="peretyazhka"><div class="pic" style="background:#f2dfdc">💺</div><div class="txt"><h4>Кресло «ушастое»</h4><p>Рогожка, каретная стяжка · 5 дней</p></div></div>
-    <div class="work" data-c="restavraciya"><div class="pic" style="background:#e9e2d4">🚪</div><div class="txt"><h4>Межкомнатные двери</h4><p>Снятие старой краски, масло · 7 дней</p></div></div>
-    <div class="work" data-c="pokraska"><div class="pic" style="background:#dfeee0">🍽️</div><div class="txt"><h4>Кухонные фасады</h4><p>Эмаль, матовый шалфей · 5 дней</p></div></div>
-  </div>
-</div></section>
-
-<section><div class="wrap"><div class="why">
-  <div><b>8 лет</b><p>чиним и восстанавливаем мебель</p></div>
-  <div><b>2 года</b><p>гарантии на все работы</p></div>
-  <div><b>0 ₽</b><p>вывоз и доставка в пределах города</p></div>
-</div></div></section>
-
-<section id="order"><div class="wrap order">
-  <div><h2>Оценка по фото</h2><p class="lead">Три шага — и вы знаете цену.</p>
-    <ol><li>Сфотографируйте мебель с 2–3 сторон.</li><li>Прикрепите фото и оставьте телефон.</li><li>Мастер перезвонит с ценой и сроками.</li></ol></div>
-  <form id="form">
-    <div id="fields">
-      <input placeholder="Как к вам обращаться" required>
-      <input type="tel" placeholder="Телефон" required>
-      <select><option>Что нужно сделать?</option><option>Перетяжка</option><option>Реставрация</option><option>Ремонт</option><option>Покраска</option></select>
-      <label class="drop" for="files">📷 Нажмите, чтобы прикрепить фото</label>
-      <input type="file" id="files" accept="image/*" multiple hidden>
-      <div class="previews" id="previews"></div>
-      <textarea rows="3" placeholder="Комментарий (необязательно)"></textarea>
-      <button class="btn">Получить оценку</button>
+<header><div class="wrap bar">
+  <a class="logo" href="index.html">Вторая жизнь</a>
+  <nav>
+    <a class="on" href="index.html">Мастерская</a>
+    <a href="works.html">Работы</a>
+    <a href="order.html">Оценка по фото</a>
+  </nav>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <img src="img/mebel_hero.jpg" alt="Мастерская">
+    <div class="hero-in">
+      <p style="font-weight:800;color:var(--wood);letter-spacing:.14em;font-size:12px">РЕСТАВРАЦИЯ</p>
+      <h1>Старой мебели возвращаем характер</h1>
+      <p class="muted" style="margin-bottom:18px">Перетяжка, шпон, лак, ремонт каркаса. Срок обычно 10–21 день.</p>
+      <a class="btn" href="order.html">Прислать фото на оценку</a>
     </div>
-    <div class="done" id="done"><div style="font-size:48px">🙌</div><h3>Фото получили!</h3><p>Мастер свяжется с вами в течение 15 минут.</p></div>
-  </form>
-</div></section>
-
-<section id="reviews"><div class="wrap">
-  <h2>Отзывы</h2><p class="lead">Нам доверяют самое дорогое — бабушкины кресла.</p>
-  <div class="reviews">
-    <div class="rev"><p>«Диван как новый, а ведь хотели выбрасывать. Забрали и привезли сами.»</p><span>Ирина, перетяжка дивана</span></div>
-    <div class="rev"><p>«Отреставрировали буфет 1960-х. Сохранили родной шпон — это было важно.»</p><span>Михаил, реставрация</span></div>
-    <div class="rev"><p>«Покрасили кухню вместо замены — сэкономили больше половины.»</p><span>Ольга, покраска фасадов</span></div>
+  </section>
+  <h2 style="font-family:Fraunces,serif;margin-bottom:12px">До и после</h2>
+  <div class="pair">
+    <figure><img src="img/mebel_before.jpg" alt="До"><figcaption>До</figcaption></figure>
+    <figure><img src="img/mebel_after.jpg" alt="После"><figcaption>После · кресло, бархат</figcaption></figure>
   </div>
-</div></section>
-
-<footer><div class="wrap"><span>© Вторая жизнь — демо-проект для портфолио</span><span>Дизайн и разработка: Андрей Добридник</span></div></footer>
-
-<script>
-  const r = document.getElementById('baRange'), after = document.querySelector('.ba .after'), line = document.getElementById('line');
-  r.addEventListener('input', () => { after.style.clipPath = `inset(0 0 0 ${r.value}%)`; line.style.left = r.value + '%'; });
-  document.getElementById('tabs').addEventListener('click', e => {
-    if (e.target.tagName !== 'BUTTON') return;
-    document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b === e.target));
-    const f = e.target.dataset.f;
-    document.querySelectorAll('.work').forEach(w => w.classList.toggle('hide', f !== 'all' && w.dataset.c !== f));
-  });
-  document.getElementById('files').addEventListener('change', e => {
-    const box = document.getElementById('previews'); box.innerHTML = '';
-    [...e.target.files].slice(0, 6).forEach(f => { const img = new Image(); img.src = URL.createObjectURL(f); box.appendChild(img); });
-  });
-  document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); document.getElementById('fields').style.display = 'none'; document.getElementById('done').style.display = 'block'; });
-</script>
+</main>
+<footer><div class="wrap">Вторая жизнь — демо-сайт мастерской · Андрей Добридник</div></footer>
 </body>
 </html>

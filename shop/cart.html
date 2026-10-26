@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Корзина — Листья</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="logo" href="index.html">Листья</a>
+  <nav>
+    <a href="index.html">Магазин</a>
+    <a href="delivery.html">Доставка</a>
+    <a class="cart on" href="cart.html">Корзина <b data-cart-count>0</b></a>
+  </nav>
+</div></header>
+<main class="wrap" style="padding:28px 0 70px">
+  <h1>Корзина</h1>
+  <div class="cols" style="margin-top:20px">
+    <div id="lines"></div>
+    <div class="box" id="sum"></div>
+  </div>
+</main>
+<footer class="site"><div class="wrap"><span>Демо-заказ никуда не уходит</span></div></footer>
+<script src="data.js"></script>
+<script>
+function draw(){
+  const ids=Object.keys(cart);
+  const sum=ids.reduce((s,id)=>s+PRODUCTS.find(p=>p.id===id).price*cart[id],0);
+  const del=sum>=1500||!sum?0:290;
+  document.getElementById("lines").innerHTML=ids.length?ids.map(id=>{
+    const p=PRODUCTS.find(x=>x.id===id);
+    return `<div class="line"><img src="${p.img}"><div><b>${p.name}</b><div class="meta">${p.meta}</div></div>
+      <div><button class="btn ghost" style="padding:4px 10px" onclick="add('${id}',-1);draw()">−</button> ${cart[id]}
+      <button class="btn ghost" style="padding:4px 10px" onclick="add('${id}');draw()">+</button></div>
+      <b>${rub(p.price*cart[id])}</b></div>`;
+  }).join(""):'<p class="meta">Пусто. <a href="index.html">В каталог</a></p>';
+  document.getElementById("sum").innerHTML=`<p class="row"><span>Товары</span><b>${rub(sum)}</b></p>
+    <p class="row"><span>Доставка</span><b>${del?rub(del):"бесплатно"}</b></p>
+    <p class="row" style="font-size:22px;margin:12px 0"><span>Итого</span><b>${rub(sum+del)}</b></p>
+    <button class="btn" style="width:100%" ${sum?"":"disabled"} onclick="pay()">Оформить</button>`;
+  badge();
+}
+function pay(){ Object.keys(cart).forEach(k=>delete cart[k]); save();
+  document.getElementById("lines").innerHTML='<p>Заказ принят. Это демо — заявка никуда не отправляется.</p>'; draw(); }
+draw();
+</script>
+</body>
+</html>

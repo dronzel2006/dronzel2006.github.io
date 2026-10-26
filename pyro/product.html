@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Товар — НЕБО</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="logo" href="index.html">НЕ<span>БО</span></a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a class="on" href="catalog.html">Каталог</a>
+    <a href="delivery.html">Доставка</a>
+    <a class="cart-link" href="cart.html">Корзина <b data-cart-count>0</b></a>
+  </nav>
+</div></header>
+<div class="wrap product" id="root"></div>
+<footer class="site"><div class="wrap"><span>НЕБО · демо-проект</span><span>Продажа 18+</span></div></footer>
+<script src="data.js"></script>
+<script>
+const p = PRODUCTS.find(x => x.id === new URLSearchParams(location.search).get("id")) || PRODUCTS[0];
+document.title = p.name + " — НЕБО";
+document.getElementById("root").innerHTML = `
+  <div class="gallery"><img src="${p.img}" alt="${p.name}"></div>
+  <div class="info">
+    <div class="kicker">${CATS[p.cat]} · класс ${p.level}</div>
+    <h1>${p.name}</h1>
+    <p>${p.desc}</p>
+    <div class="specs">
+      <div><b>Залпов / шт.</b>${p.shots}</div>
+      <div><b>Калибр</b>${p.cal}</div>
+      <div><b>Длительность</b>${p.time}</div>
+      <div><b>Доставка</b>от 1 дня</div>
+    </div>
+    <div class="price" style="font-size:32px">${rub(p.price)}</div>
+    <p class="notice">Запуск только на открытой площадке, кроме позиций «для зала». Инструкцию кладём в заказ.</p>
+    <div class="row-btns">
+      <button class="btn btn-gold" onclick="add('${p.id}')">Положить в корзину</button>
+      <a class="btn btn-ghost" href="delivery.html">Как доставим</a>
+    </div>
+  </div>`;
+</script>
+</body>
+</html>
